@@ -1,0 +1,46 @@
+init
+status
+log
+config (이메일, 유저명 등록. 1회만 하면됨) , config --list
+add : 스테이지 영역을 추가하는 역할	 (총알 장전)
+commit (-m)
+checkout
+push (-u origin "branch 이름") : 로컬에 있는 걸 github로 업로드 할 때 사용. 
+config --list : 설정된 파일 목록을 볼 수 있음.
+fetch
+pull
+
+다른 branch에서 원래쓰던 branch로 돌아갈때
+
+-> checkout "브랜치 명" or switch "브랜치 명" 사용하면 됨
+
+git merge temp // temp라는 브랜치를 merge함
+
+git branch -d "브랜치 명" <- 브랜치를 삭제
+
+git restore --staged <file name> <- stage에 올라간 파일 내려두기
+
+git remove - v // 현재 연결되어 있는 리포지토리의 주소를 확인 가능 .
+
+남과 작업 연동할때 
+
+1. fork
+2. clone
+3. branch
+4. 브랜치 이동 (checkout , switch)
+5. 파일(소스코드) 수정 (지금 미션은 day2 수정)
+6. add , commit, push (이때 push는 git push -u origin "내가 만든 브랜치 명")
+7. pull request <- 상대가 바꾼 것에 대한 코멘트 남길 수 있음. //이건 add 하면 pull request 버튼이 생김
+8. 상대가 merge할지 말지 결정 가능 
+9. 사용다한 branch는 삭제하기
+10. 원본 리포지토리(원격에 있는) 다시 클론 해서 사용.
+
+브랜치 만들자마자 바꾸는법
+
+git checkout -b "새로 만들 브랜치 명"
+
+
+
+
+
+
