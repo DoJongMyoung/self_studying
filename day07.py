@@ -1,43 +1,32 @@
-#링크드 리스트
-#데이터를 담는 부분과 노트를 가르키는 부분으로 이루어져 있음.
+#큐
 
 class Node:
     def __init__(self, data, next=None): #data를 보관할 data변수 // 다음노드의 주소를 찍을 next변수 , 따로 설정하지 않으면 None
         self.data = data
         self.next = next
 
-class LinkedList:
+class Queue:
     def __init__(self):
-        self.head = None
+        self.front = None
+        self.rear = None
+        self._size = 0
 
-    def append(self,data):
-        if not self.head: # self.head가 None일시 실행
-            self.head = Node(data)
-            return
-        current = self.head
-        while current.next:
-            current = current.next
-        current.next = Node(data)
+    def enqueue(self, data):
+        self._size = self._size + 1
+        node = Node(data)
+        if self.rear is None:
+            self.front = node
+            self.rear = node
+        else:
+            self.rear.next = node #주소 설정
+            self.rear = node # 값 설정
 
-    def search(self, target):
-        current = self.head
-        while current.next:
-            if current.data == target:
-                return True
-            else:
-                current = current.next
-        return False
-
-    def remove(self, target):
-        if self.head.data == target:
-            self.head = self.head.next
-            return
-        current = self.head
-        privious = None
-        while current:
-            if current.data == target:
-                privious.next = current.next
-                break
-            else:
-                privious = current
-                current = current.next
+    def dequeue(self):
+        if self.front is None:
+            raise IndexError("빈 큐입니다")
+        self._size = self._size - 1
+        temp = self.front
+        self.front = self.front.next
+        if self.front is None:
+            self.rear = None
+        return temp.data
