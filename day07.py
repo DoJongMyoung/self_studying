@@ -27,3 +27,17 @@ class LinkedList:
             else:
                 current = current.next
         return False
+
+    def remove(self, target):
+        if self.head.data == target:
+            self.head = self.head.next
+            return
+        current = self.head
+        privious = None
+        while current:
+            if current.data == target:
+                privious.next = current.next
+                break
+            else:
+                privious = current
+                current = current.next
