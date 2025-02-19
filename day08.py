@@ -1,59 +1,50 @@
-def pre_order(node):
-    if node is None: #노드가 비어있으면
-        return
-    print(node.data, end='-') # 현1-2-4-5 왼 3-6오
-    pre_order(node.left)
-    pre_order(node.right)
-
-
-def in_order(node):
-    if node is None:
-        return
-    in_order(node.left)
-    print(node.data, end='-') # 왼4-2-5 -1현 -6-3오
-    in_order(node.right)
-
-
-def post_order(node):
-    if node is None:
-        return
-    post_order(node.left)
-    post_order(node.right)
-    print(node.data, end='-') #    왼쪽(4 - 5 - 2) - 오른쪽(6 - 3)- 1
-
-
 class TreeNode:
 	def __init__(self):
 		self.left = None
 		self.data = None
 		self.right = None
 
-node1 = TreeNode()
-node1.data = 'hs1'
 
-node2 = TreeNode()
-node2.data = 'sl2'
-node1.left = node2
+if __name__ == "__main__":
+    numbers = [10, 15, 8, 3, 9]
+    root = None
 
-node3 = TreeNode()
-node3.data = 'mb3'
-node1.right = node3
+    node = TreeNode()
+    node.data = numbers[0]
+    root = node #루트는 주소를 의미
 
-node4 = TreeNode()
-node4.data = 'hw4'
-node2.left = node4
+    for group in numbers[1:]: #그룹의 index=1번쨰 요소부터 for문 시작
+        node = TreeNode()
+        node.data = group #group에 해당하는 값을 node.data에 할당
+        current = root # 최신 주소
+        while True:
+            if group < current.data: #그룹의 요소가 current에 들어있는 데이터보다 작으면
+                if current.left is None:
+                    current.left = node # 왼쪽이 없으면 할당
+                    break
+                current = current.left  # move 왼쪽으로 이동
+            else:
+                if current.right is None:
+                    current.right = node
+                    break
+                current = current.right  # move
 
-node5 = TreeNode()
-node5.data = 'zz5'
-node2.right = node5
+    print("BST 구성 완료")
 
-node6 = TreeNode()
-node6.data = 'sm6'
-node3.left = node6
+    find_group = int(input())
 
-
-# post_order(node1)
-# print()
-pre_order(node1)
-# print()
-# in_order(node1)
+    current = root
+    while True:
+        if find_group == current.data:
+            print(f"{find_group}을(를) 찾았습니다")
+            break
+        elif find_group < current.data:
+            if current.left is None:
+                print(f"{find_group}이(가) 존재하지 않습니다")
+                break
+            current = current.left
+        else:
+            if current.right is None:
+                print(f"{find_group}이(가) 존재하지 않습니다")
+                break
+            current = current.right
